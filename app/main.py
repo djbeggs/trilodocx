@@ -148,8 +148,10 @@ async def sae_summary(
                     pref_idx = i
                 if compound_a.lower() in header_lower:
                     col_a = i
+                    compound_a = header.strip()  # use the actual header text for the compound name
                 if compound_b.lower() in header_lower:
                     col_b = i
+                    compound_b = header.strip()  # use the actual header text for the compound name
 
             if pref_idx is None or col_a is None or col_b is None:
                 # skip tables that don't include both compounds
@@ -184,7 +186,7 @@ async def sae_summary(
 
                     pct_a = _extract_percent(val_a)
                     pct_b = _extract_percent(val_b)
-                    # TODO: calculated pct if missing, but count present, or vice versa. Currently, if either is missing, it will be treated as zero.
+                    # TODO: calculated pct if missing, but count present, or vice versa. Currently, if either is missing, it will be treated as zero. OUT OF SCOPE FOR NOW.
 
                     # rule: both zero or missing
                     if (pct_a is None or pct_a == 0) and (pct_b is None or pct_b == 0):
